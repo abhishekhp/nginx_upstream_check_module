@@ -1036,10 +1036,10 @@ ngx_http_upstream_check_add_timers(ngx_cycle_t *cycle)
 
         ucscf = peer[i].conf;
         cf = ucscf->check_type_conf;
-				if(is_https_check(&peer[i])){
+/*				if(is_https_check(&peer[i])){
 					ngx_ssl_create(&ucscf->ssl, NGX_SSL_SSLv3 | NGX_SSL_TLSv1,0);
 				}
-
+*/
         if (cf->need_pool) {
             peer[i].pool = ngx_create_pool(ngx_pagesize, cycle->log);
             if (peer[i].pool == NULL) {
@@ -1158,7 +1158,7 @@ ngx_http_upstream_check_connect_handler(ngx_event_t *event)
 
     peer = event->data;
     ucscf = peer->conf;
-    int is_https_check_type = is_https_check(peer);
+    int is_https_check_type = 0;  //is_https_check(peer);
 
     if (peer->pc.connection != NULL) {
         c = peer->pc.connection;
